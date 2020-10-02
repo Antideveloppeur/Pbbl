@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.antideveloppeur.pbbl.direct;
+package com.github.pbbl.direct;
 
-import com.github.antideveloppeur.pbbl.AbstractBufferPool;
+import com.github.pbbl.AbstractBufferPool;
 
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;

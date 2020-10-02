@@ -21,37 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.antideveloppeur.pbbl.direct;
+package com.github.pbbl.heap;
 
-import com.github.antideveloppeur.pbbl.AbstractBufferPool;
+import com.github.pbbl.AbstractBufferPool;
 
 import java.nio.ByteBuffer;
-import java.nio.ShortBuffer;
 
 /**
- * Represents a pool of direct {@link ShortBuffer} objects.
+ * Represents a pool of non-direct {@link ByteBuffer} objects.
  *
  * @author Jacob G.
- * @since May 25, 2020
+ * @since February 23, 2019
  */
-public final class DirectShortBufferPool extends AbstractBufferPool<ShortBuffer> {
-
+public final class ByteBufferPool extends AbstractBufferPool<ByteBuffer> {
+    
     @Override
-    protected ShortBuffer allocate(int capacity) {
-        return ByteBuffer.allocateDirect(capacity << 1).asShortBuffer();
+    protected ByteBuffer allocate(int capacity) {
+        return ByteBuffer.allocate(capacity);
     }
 
     /**
      * {@inheritDoc}
      *
-     * @throws IllegalArgumentException if {@code buffer} is not direct.
+     * @throws IllegalArgumentException if {@code buffer} is direct.
      */
     @Override
-    public void give(ShortBuffer buffer) {
-        if (!buffer.isDirect()) {
-            throw new IllegalArgumentException("A non-direct ShortBuffer cannot be given to a DirectShortBufferPool!");
+    public void give(ByteBuffer buffer) {
+        if (buffer.isDirect()) {
+            throw new IllegalArgumentException("A direct ByteBuffer cannot be given to a ByteBufferPool!");
         }
-
+        
         super.give(buffer);
     }
 }

@@ -21,23 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.antideveloppeur.pbbl.heap;
+package com.github.pbbl.heap;
 
-import com.github.antideveloppeur.pbbl.AbstractBufferPool;
+import com.github.pbbl.AbstractBufferPool;
 
-import java.nio.IntBuffer;
+import java.nio.LongBuffer;
 
 /**
- * Represents a pool of non-direct {@link IntBuffer} objects.
+ * Represents a pool of non-direct {@link LongBuffer} objects.
  *
  * @author Jacob G.
  * @since May 25, 2020
  */
-public final class IntBufferPool extends AbstractBufferPool<IntBuffer> {
+public final class LongBufferPool extends AbstractBufferPool<LongBuffer> {
 
     @Override
-    protected IntBuffer allocate(int capacity) {
-        return IntBuffer.allocate(capacity);
+    protected LongBuffer allocate(int capacity) {
+        return LongBuffer.allocate(capacity);
     }
 
     /**
@@ -46,9 +46,9 @@ public final class IntBufferPool extends AbstractBufferPool<IntBuffer> {
      * @throws IllegalArgumentException if {@code buffer} is direct.
      */
     @Override
-    public void give(IntBuffer buffer) {
+    public void give(LongBuffer buffer) {
         if (buffer.isDirect()) {
-            throw new IllegalArgumentException("A direct IntBuffer cannot be given to a IntBufferPool!");
+            throw new IllegalArgumentException("A direct LongBuffer cannot be given to a LongBufferPool!");
         }
 
         super.give(buffer);

@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.antideveloppeur.pbbl;
+package com.github.pbbl;
 
-import com.github.antideveloppeur.pbbl.heap.ByteBufferPool;
-import com.github.antideveloppeur.pbbl.heap.CharBufferPool;
+import com.github.pbbl.heap.ByteBufferPool;
+import com.github.pbbl.heap.CharBufferPool;
 
 import java.nio.Buffer;
 import java.util.ArrayDeque;

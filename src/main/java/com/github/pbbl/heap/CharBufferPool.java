@@ -21,23 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.antideveloppeur.pbbl.heap;
+package com.github.pbbl.heap;
 
-import com.github.antideveloppeur.pbbl.AbstractBufferPool;
+import com.github.pbbl.AbstractBufferPool;
 
-import java.nio.DoubleBuffer;
+import java.nio.CharBuffer;
 
 /**
- * Represents a pool of non-direct {@link DoubleBuffer} objects.
+ * Represents a pool of non-direct {@link CharBuffer} objects.
  *
  * @author Jacob G.
  * @since May 25, 2020
  */
-public final class DoubleBufferPool extends AbstractBufferPool<DoubleBuffer> {
-
+public final class CharBufferPool extends AbstractBufferPool<CharBuffer> {
+    
     @Override
-    protected DoubleBuffer allocate(int capacity) {
-        return DoubleBuffer.allocate(capacity);
+    protected CharBuffer allocate(int capacity) {
+        return CharBuffer.allocate(capacity);
     }
 
     /**
@@ -46,11 +46,11 @@ public final class DoubleBufferPool extends AbstractBufferPool<DoubleBuffer> {
      * @throws IllegalArgumentException if {@code buffer} is direct.
      */
     @Override
-    public void give(DoubleBuffer buffer) {
+    public void give(CharBuffer buffer) {
         if (buffer.isDirect()) {
-            throw new IllegalArgumentException("A direct DoubleBuffer cannot be given to a DoubleBufferPool!");
+            throw new IllegalArgumentException("A direct CharBuffer cannot be given to a CharBufferPool!");
         }
-
+        
         super.give(buffer);
     }
 }
