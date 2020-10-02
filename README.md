@@ -7,36 +7,28 @@ A thread-safe [Buffer](https://docs.oracle.com/en/java/javase/14/docs/api/java.b
 Maven:
 ```xml
 <dependency>
-  <groupId>com.github.jhg023</groupId>
+  <groupId>com.github.antideveloppeur</groupId>
   <artifactId>Pbbl</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.2-j8</version>
 </dependency>
 ```
 Gradle:
 ```groovy
-implementation 'com.github.jhg023:Pbbl:1.0.2'
-```
-
- 2. Because Pbbl is compiled with Java 11, you must require its module in your `module-info.java`:
-
-```java
-module my.project {
-    requires com.github.pbbl;
-}
+implementation 'com.github.antideveloppeur:Pbbl:1.0.2-j8'
 ```
 
 # Example(s)
 1. Create `ByteBufferPool` and manually close it:
 ```java
 // Create a ByteBufferPool (used to pool non-direct ByteBuffer objects).
-var pool = new ByteBufferPool();
+ByteBufferPool pool = new ByteBufferPool();
 
 // Take a non-direct ByteBuffer (with 8 available bytes) from the pool.
 // If the pool is empty, a new ByteBuffer will be created.
-var buffer = pool.take(Long.BYTES);
+ByteBuffer buffer = pool.take(Long.BYTES);
 
 // Do something with the ByteBuffer.
-var array = buffer.putLong(42).array();
+byte[] array = buffer.putLong(42).array();
 
 // Give the ByteBuffer back to the pool for re-use.
 pool.give(buffer);
@@ -47,7 +39,7 @@ pool.close();
 2. Create `DirectFloatBufferPool` and automatically close it:
 ```java
 // Create a DirectFloatBufferPool (used to pool direct FloatBuffer objects).
-try (var pool = new DirectFloatBufferPool()) {
+try (DirectFloatBufferPool pool = new DirectFloatBufferPool()) {
     // Take a direct FloatBuffer (with 8 available floats) from the pool.
     FloatBuffer buffer = pool.take(8);
     
