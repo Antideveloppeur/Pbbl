@@ -21,7 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.pbbl;
+package com.github.antideveloppeur.pbbl;
+
+import com.github.antideveloppeur.pbbl.heap.ByteBufferPool;
+import com.github.antideveloppeur.pbbl.heap.CharBufferPool;
 
 import java.nio.Buffer;
 import java.util.ArrayDeque;
@@ -68,8 +71,8 @@ public abstract class AbstractBufferPool<T extends Buffer> implements AutoClosea
      * created.
      *
      * @param capacity the capacity of the buffer requested, which will be interpreted differently for each
-     *                 implementation of this pool. A {@link com.github.pbbl.heap.ByteBufferPool} measures
-     *                 {@code capacity} in bytes, a {@link com.github.pbbl.heap.CharBufferPool} measures
+     *                 implementation of this pool. A {@link ByteBufferPool} measures
+     *                 {@code capacity} in bytes, a {@link CharBufferPool} measures
      *                 {@code capacity} in chars, etc.
      * @return         a buffer with a capacity greater than or equal to {@code capacity}, a limit set to
      *                 {@code capacity}, and position set to {@code 0}.
